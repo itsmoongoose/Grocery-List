@@ -16,7 +16,10 @@ __*Motivation*__ - Allows me to demonstrate my knowledge from my Web Development
 ## __Known Bugs and Planned Features__
 
 *Bugs* - There are no known bugs at this time.\
-*Features* - There are no planned features at this time.
+*Features* - Below is a summary of planned features:
+- __FEAT-NEC-001:__ Validate input so whitespace-only answers cannot be submitted
+- __FEAT-NEC-002:__ Add button to clear selected items, removing them from the list
+- __FEAT-NEC-003:__ Add button to clear all items, removing them from the list
 
 ## __Installation and Setup__
 
