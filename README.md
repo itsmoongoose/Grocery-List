@@ -3,8 +3,8 @@
 __*Scope and Functionality*__ - This program is intended to be used as a shared and fully digital grocery list. Multiple users can view and interact with the program simultaneously, and all changes are saved as soon as they're made.
 
 Two pages are available:
-1. __Adding Products__ - Where users can search and add products to their grocery list
-2. __Viewing List__ - Where uses can see each item on their list and remove them as they're shopping
+1. __Add Products__ - Where users can search and add products to their grocery list
+2. __View Grocery List__ - Where uses can see each item on their list and remove them as they're shopping
 
 __*Motivation*__ - Allows me to demonstrate my knowledge from my Web Development program at the University of Alberta.
 
@@ -15,9 +15,9 @@ __*Motivation*__ - Allows me to demonstrate my knowledge from my Web Development
 
 ## __Known Bugs and Planned Features__
 
-*Bugs* - There are no known bugs at this time.
+*Bugs* - There are no known bugs at this time.\
 *Features* - There are no planned features at this time.
 
 ## __Installation and Setup__
 
-To use this program, click this (link)[itsmoongoose.github.io/Grocery-List/].
+To use this program, click this [link](itsmoongoose.github.io/Grocery-List/).
