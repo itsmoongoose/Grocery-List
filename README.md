@@ -23,4 +23,4 @@ __*Motivation*__ - Allows me to demonstrate my knowledge from my Web Development
 
 ## __Installation and Setup__
 
-To use this program, click this [link](itsmoongoose.github.io/Grocery-List/).
+To use this program, click this [link](https://itsmoongoose.github.io/Grocery-List/).
