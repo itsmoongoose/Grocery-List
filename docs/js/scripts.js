@@ -15,9 +15,16 @@ function displayProducts() {
     for (const product of productList) {
         productUL.classList.add("product-ul");
         productContainer = document.querySelector(".product-ul");
-        const productName = document.createElement("li");
+        const listItem = document.createElement("li");
+        const inputCheckbox = document.createElement("input");
+        inputCheckbox.type = "checkbox";
+        inputCheckbox.id = `checkbox${productList.indexOf(product)}`;
+        const productName = document.createElement("label");
+        productName.htmlFor = `checkbox${productList.indexOf(product)}`;
         productName.textContent = product;
-        productUL.appendChild(productName);
+        listItem.appendChild(inputCheckbox); // <input> goes inside <li>
+        listItem.appendChild(productName); // <label> goes inside <li>
+        productUL.appendChild(listItem); // <li> goes inside <ul>
     }
 
     if (productList.length == 1) {

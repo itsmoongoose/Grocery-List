@@ -42,7 +42,7 @@ form {
     margin-bottom: 10px;
 }
 
-label {
+#item-input-label {
     font-size: 20px;
 }
 
@@ -84,4 +84,23 @@ a {
     font-size: 16px;
     text-decoration: none;
     margin-top: 3px;
+}
+
+ul {
+    width: 300px;
+    list-style-type: none;
+}
+
+input[type="checkbox"] {
+    width: 23px;
+    margin-left: 20px;
+}
+
+input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+}
+
+label {
+    font-size: 20px;
+    margin-left: 10px;
 }
