@@ -9,15 +9,15 @@ let productContainer = "";
 
 // Function -- display product list
 function displayProducts() {
-    const productDiv = document.createElement("div");
+    const productUL = document.createElement("ul");
     
     // Loop through product list array and create element for each item
     for (const product of productList) {
-        productDiv.classList.add("product-div");
-        productContainer = document.querySelector(".product-div");
-        const productName = document.createElement("p");
+        productUL.classList.add("product-ul");
+        productContainer = document.querySelector(".product-ul");
+        const productName = document.createElement("li");
         productName.textContent = product;
-        productDiv.appendChild(productName);
+        productUL.appendChild(productName);
     }
 
     if (productList.length == 1) {
@@ -27,7 +27,7 @@ function displayProducts() {
     }
 
     // Add products to page
-    productDisplayDiv.appendChild(productDiv);
+    productDisplayDiv.appendChild(productUL);
 }
 
 // Event Listener for item form
