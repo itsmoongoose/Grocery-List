@@ -4,21 +4,24 @@ const itemInputField = document.querySelector("#item-input-field");
 const submitBtn = document.querySelector("#submit-btn");
 const productDisplayDiv = document.querySelector("#product-list");
 const placeholderText = document.querySelector("#placeholder-text");
+let placeholderTextVis = true;
+const clrSelectBtn = document.querySelector("#clr-select");
+const clrAllBtn = document.querySelector("#clr-all");
 const productList = [];
-let productContainer = "";
 
 // Function -- display product list
 function displayProducts() {
     const productUL = document.createElement("ul");
+    productUL.classList.add("product-ul");
+    const productContainer = document.querySelector(".product-ul");
     
     // Loop through product list array and create element for each item
     for (const product of productList) {
-        productUL.classList.add("product-ul");
-        productContainer = document.querySelector(".product-ul");
         const listItem = document.createElement("li");
         const inputCheckbox = document.createElement("input");
         inputCheckbox.type = "checkbox";
         inputCheckbox.id = `checkbox${productList.indexOf(product)}`;
+        inputCheckbox.value = product;
         const productName = document.createElement("label");
         productName.htmlFor = `checkbox${productList.indexOf(product)}`;
         productName.textContent = product;
@@ -27,9 +30,10 @@ function displayProducts() {
         productUL.appendChild(listItem); // <li> goes inside <ul>
     }
 
-    if (productList.length == 1) {
+    if (productList.length == 1 && placeholderTextVis) {
         productDisplayDiv.removeChild(placeholderText); // remove placeholder text
-    } else if (productList.length > 1) {
+        placeholderTextVis = false;
+    } else {
         productDisplayDiv.removeChild(productContainer); // remove old div
     }
 
@@ -48,3 +52,15 @@ itemForm.addEventListener("submit", (event) => {
     // Display product list
     displayProducts();
 });
+
+// Event Listener for clear selected items button
+clrSelectBtn.addEventListener("click", (event) => {
+    const checkedList = document.querySelectorAll('input[type="checkbox"]:checked');
+    for (const item of checkedList) {
+        const itemID = item.id;
+        const itemName = document.getElementById(itemID).value;
+        const index = productList.indexOf(itemName);
+        productList.splice(index, 1);
+    }
+    displayProducts();
+})
