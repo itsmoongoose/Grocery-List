@@ -7,7 +7,8 @@ const placeholderText = document.querySelector("#placeholder-text");
 let placeholderTextVis = true;
 const clrSelectBtn = document.querySelector("#clr-select");
 const clrAllBtn = document.querySelector("#clr-all");
-const productList = [];
+let productList = [];
+let placeholderPVis = false;
 
 // Function -- display product list
 function displayProducts() {
@@ -30,15 +31,32 @@ function displayProducts() {
         productUL.appendChild(listItem); // <li> goes inside <ul>
     }
 
-    if (productList.length == 1 && placeholderTextVis) {
-        productDisplayDiv.removeChild(placeholderText); // remove placeholder text
-        placeholderTextVis = false;
+    if (placeholderTextVis || placeholderPVis) {
+        if (placeholderTextVis) {
+            productDisplayDiv.removeChild(placeholderText); // remove placeholder text
+            placeholderTextVis = false;
+        } else if (placeholderPVis) {
+            const placeholderPSelector = document.querySelector(".placeholder-p");
+            productDisplayDiv.removeChild(placeholderPSelector);
+            placeholderPVis = false;
+            console.log(placeholderPVis);
+        }
     } else {
         productDisplayDiv.removeChild(productContainer); // remove old div
     }
 
     // Add products to page
     productDisplayDiv.appendChild(productUL);
+}
+
+// Function -- display placeholder text
+function displayPlaceholderText() {
+    const placeholderP = document.createElement("p");
+    placeholderP.textContent = "You haven't added anything to the list yet!";
+    placeholderP.classList.add("placeholder-p");
+    const placeholderPSelector = document.querySelector(".placeholder-p");
+    placeholderPVis = true;
+    productDisplayDiv.appendChild(placeholderP);
 }
 
 // Event Listener for item form
@@ -53,8 +71,8 @@ itemForm.addEventListener("submit", (event) => {
     displayProducts();
 });
 
-// Event Listener for clear selected items button
-clrSelectBtn.addEventListener("click", (event) => {
+// Event Listeners for clear buttons
+clrSelectBtn.addEventListener("click", (event) => { // clear selected items
     const checkedList = document.querySelectorAll('input[type="checkbox"]:checked');
     for (const item of checkedList) {
         const itemID = item.id;
@@ -63,4 +81,10 @@ clrSelectBtn.addEventListener("click", (event) => {
         productList.splice(index, 1);
     }
     displayProducts();
+})
+clrAllBtn.addEventListener("click", (event) => { // clear all items
+    const productContainer = document.querySelector(".product-ul");
+    productDisplayDiv.removeChild(productContainer);
+    productList = [];
+    displayPlaceholderText();
 })
