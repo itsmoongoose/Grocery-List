@@ -92,14 +92,16 @@ itemForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const userInput = itemInputField.value;
     const product = userInput.trim();
+    if (product) {
+        productList.push(product); // add product to array
+
+        // Add to local storage
+        addToStorage(product);
+
+        // Display product list
+        displayProducts();
+    }
     itemInputField.value = ""; // clear input field
-    productList.push(product); // add product to array
-
-    // Add to local storage
-    addToStorage(product);
-
-    // Display product list
-    displayProducts();
 });
 
 // Event Listeners for clear buttons

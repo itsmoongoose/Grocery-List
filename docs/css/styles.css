@@ -85,8 +85,8 @@ h2 {
 }
 
 a {
+    color: var(--black);
     font-size: 16px;
-    text-decoration: none;
     margin-top: 3px;
 }
 
@@ -122,3 +122,8 @@ label {
     padding: 5px 0;
     margin-bottom: 7px;
 }
+
+/* Tablet Screen Size */
+/* @media screen and (min-width: 768px) {
+
+} */
