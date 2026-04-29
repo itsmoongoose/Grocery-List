@@ -10,6 +10,20 @@ const clrAllBtn = document.querySelector("#clr-all");
 let productList = [];
 let placeholderPVis = false;
 
+// Function -- add to local storage
+function addToStorage(product) {
+    const storageKey = product;
+    const storageValue = product;
+    localStorage.setItem(storageKey, JSON.stringify(storageValue));
+}
+
+// Function -- remove from local storage
+function removeFromStorage(item) {
+    const storageKey = item;
+    const storageValue = item;
+    localStorage.removeItem(storageKey, JSON.stringify(storageValue));
+}
+
 // Function -- display product list
 function displayProducts() {
     const productUL = document.createElement("ul");
@@ -39,7 +53,6 @@ function displayProducts() {
             const placeholderPSelector = document.querySelector(".placeholder-p");
             productDisplayDiv.removeChild(placeholderPSelector);
             placeholderPVis = false;
-            console.log(placeholderPVis);
         }
     } else {
         productDisplayDiv.removeChild(productContainer); // remove old div
@@ -59,6 +72,21 @@ function displayPlaceholderText() {
     productDisplayDiv.appendChild(placeholderP);
 }
 
+// Event Listener for window
+window.addEventListener("load", (event) => {
+    for (let storedItem = 0; storedItem < localStorage.length; storedItem++) {
+        const storedKey = localStorage.key(storedItem);
+        let storedValue = localStorage.getItem(storedKey);
+        storedValue = JSON.parse(storedValue);
+
+        // Add product to product list array
+        productList.push(storedValue);
+    }
+    if (productList.length > 0) {
+        displayProducts();
+    }
+});
+
 // Event Listener for item form
 itemForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -66,6 +94,9 @@ itemForm.addEventListener("submit", (event) => {
     const product = userInput.trim();
     itemInputField.value = ""; // clear input field
     productList.push(product); // add product to array
+
+    // Add to local storage
+    addToStorage(product);
 
     // Display product list
     displayProducts();
@@ -79,12 +110,23 @@ clrSelectBtn.addEventListener("click", (event) => { // clear selected items
         const itemName = document.getElementById(itemID).value;
         const index = productList.indexOf(itemName);
         productList.splice(index, 1);
+        removeFromStorage(itemName); // remove item from local storage
     }
+
+    // Display products
     displayProducts();
+
+    // Display placeholder text
+    if (productList.length == 0) {
+        const productContainer = document.querySelector(".product-ul");
+        productDisplayDiv.removeChild(productContainer);
+        displayPlaceholderText();
+    }
 })
 clrAllBtn.addEventListener("click", (event) => { // clear all items
     const productContainer = document.querySelector(".product-ul");
     productDisplayDiv.removeChild(productContainer);
     productList = [];
+    localStorage.clear(); // delete all items from local storage
     displayPlaceholderText();
 })
